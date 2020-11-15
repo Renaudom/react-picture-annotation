@@ -1,5 +1,5 @@
 import React, { MouseEventHandler } from "react";
-import { IAnnotation } from "./Annotation";
+import { defaultTagValue, IAnnotation, TagValue } from "./Annotation";
 import { IAnnotationState } from "./annotation/AnnotationState";
 import { DefaultAnnotationState } from "./annotation/DefaultAnnotationState";
 import DefaultInputSection from "./DefaultInputSection";
@@ -25,8 +25,8 @@ interface IReactPictureAnnotationProps {
   image: string;
   annotationStyle: IShapeStyle;
   inputElement: (
-    value: string,
-    onChange: (value: string) => void,
+    value: TagValue,
+    onChange: (value: TagValue) => void,
     onDelete: () => void
   ) => React.ReactElement;
 }
@@ -51,8 +51,8 @@ export default class ReactPictureAnnotation extends React.Component<
     scrollSpeed: 0.0005,
     annotationStyle: defaultShapeStyle,
     inputElement: (
-      value: string,
-      onChange: (value: string) => void,
+      value: TagValue,
+      onChange: (value: TagValue) => void,
       onDelete: () => void
     ) => (
       <DefaultInputSection
@@ -69,7 +69,7 @@ export default class ReactPictureAnnotation extends React.Component<
       top: 0,
     },
     showInput: false,
-    inputComment: "",
+    inputComment: defaultTagValue,
   };
 
   set selectedId(value: string | null) {
@@ -236,7 +236,7 @@ export default class ReactPictureAnnotation extends React.Component<
               left: x,
               top: y + height + this.props.marginWithInput,
             },
-            inputComment: item.getAnnotationData().comment || "",
+            inputComment: item.getAnnotationData().comment || defaultTagValue,
           });
         }
       }
@@ -244,7 +244,7 @@ export default class ReactPictureAnnotation extends React.Component<
       if (!hasSelectedItem) {
         this.setState({
           showInput: false,
-          inputComment: "",
+          inputComment: defaultTagValue,
         });
       }
     }
@@ -322,7 +322,7 @@ export default class ReactPictureAnnotation extends React.Component<
     }
   };
 
-  private onInputCommentChange = (comment: string) => {
+  private onInputCommentChange = (comment: TagValue) => {
     const selectedShapeIndex = this.shapes.findIndex(
       (item) => item.getAnnotationData().id === this.selectedId
     );

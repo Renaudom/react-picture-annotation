@@ -7,7 +7,7 @@ import {
   defaultShapeStyle,
   ReactPictureAnnotation,
 } from "../src";
-import { IAnnotation } from "../src/Annotation";
+import { defaultTagValue, IAnnotation } from "../src/Annotation";
 import { IShapeData } from "../src/Shape";
 
 addDecorator((storyFn) => <div>{storyFn()}</div>);
@@ -26,7 +26,7 @@ storiesOf("Hello World", module)
       >([
         {
           id: "a",
-          comment: "HA HA HA",
+          comment: defaultTagValue,
           mark: {
             type: "RECT",
             width: 161,
@@ -68,10 +68,7 @@ storiesOf("Hello World", module)
           }}
           image="https://bequank.oss-cn-beijing.aliyuncs.com/landpage/large/60682895_p0_master1200.jpg"
           inputElement={(value, onChange, onDelete) => (
-            <DefaultInputSection
-              placeholder={"Hello world"}
-              {...{ value, onChange, onDelete }}
-            />
+            <DefaultInputSection {...{ value, onChange, onDelete }} />
           )}
         />
       );
