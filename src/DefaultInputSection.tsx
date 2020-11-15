@@ -1,4 +1,4 @@
-import { TagValue } from "Annotation";
+import { defaultTagValue, TagValue } from "Annotation";
 import React from "react";
 // import DeleteButton from "./DeleteButton";
 
@@ -9,10 +9,12 @@ export interface IDefaultInputSection {
 }
 
 export default ({ value, onChange, onDelete }: IDefaultInputSection) => {
-  const [localTagValue, SetLocalTagValue] = React.useState<TagValue>(value);
+  const [localTagValue, SetLocalTagValue] = React.useState<TagValue | null>(
+    value
+  );
   const onchangeValue = (inputValue: string) => {
     const nextTagValue: TagValue = {
-      tag: localTagValue.tag,
+      tag: (localTagValue || defaultTagValue).tag,
       value: inputValue,
     };
     SetLocalTagValue(nextTagValue);
@@ -21,7 +23,7 @@ export default ({ value, onChange, onDelete }: IDefaultInputSection) => {
   const onchangeTag = (inputValue: string) => {
     const nextTagValue: TagValue = {
       tag: inputValue,
-      value: localTagValue.value,
+      value: (localTagValue || defaultTagValue).value,
     };
     SetLocalTagValue(nextTagValue);
     onChange(nextTagValue);
