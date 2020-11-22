@@ -36,7 +36,7 @@ export default ({ value, onChange, onDelete }: IDefaultInputSection) => {
         onChange={(e) => onchangeTag(e.target.value)}
       >
         <optgroup label="Theropods">
-          <option>Tyrannosaurus</option>
+          <option>Rustus</option>
           <option>Velociraptor</option>
           <option>Deinonychus</option>
         </optgroup>
