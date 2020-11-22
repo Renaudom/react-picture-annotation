@@ -1,4 +1,4 @@
-import { defaultTagValue, TagValue } from "Annotation";
+import { defaultTagValue, TagValue } from "./Annotation";
 import React from "react";
 // import DeleteButton from "./DeleteButton";
 
